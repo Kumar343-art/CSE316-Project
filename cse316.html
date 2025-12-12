@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Virtual Memory Management Tool</title>
+    <link rel="stylesheet" href="cse316.css">
+</head>
+<body>
+
+<h1>🧠 Virtual Memory Management Visualizer</h1>
+<p class="sub">Paging • Segmentation • Allocation • Page Replacement Algorithms</p>
+
+<div class="panel">
+
+    <!-- Paging Panel -->
+    <div class="card">
+        <h2>Paging Simulator</h2>
+
+        <input id="pageSeq" placeholder="Pages (e.g. 1 2 3 2 4 1)">
+        <input id="frames" placeholder="Frames (e.g. 3)" type="number">
+
+        <select id="algo">
+            <option value="FIFO">FIFO</option>
+            <option value="LRU">LRU</option>
+            <option value="OPT">Optimal</option>
+        </select>
+
+        <button onclick="runPaging()">Run Paging</button>
+
+        <h3>Output:</h3>
+        <div id="pagingOut" class="output-box"></div>
+    </div>
+
+    <!-- Segmentation Panel -->
+    <div class="card">
+        <h2>Segmentation</h2>
+
+        <input id="segments" placeholder="Enter segment sizes (100 200 50)">
+        <button onclick="runSegmentation()">Simulate</button>
+
+        <h3>Output:</h3>
+        <div id="segOut" class="output-box"></div>
+    </div>
+
+    <!-- Memory Allocation Panel -->
+    <div class="card">
+        <h2>Memory Allocation</h2>
+
+        <input id="holes" placeholder="Memory Holes (e.g. 100 500 200)">
+        <input id="process" placeholder="Process Size">
+
+        <select id="allocMethod">
+            <option value="First Fit">First Fit</option>
+            <option value="Best Fit">Best Fit</option>
+            <option value="Worst Fit">Worst Fit</option>
+        </select>
+
+        <button onclick="runAllocation()">Allocate</button>
+
+        <h3>Output:</h3>
+        <div id="allocOut" class="output-box"></div>
+    </div>
+
+</div>
+
+<script src="cse316.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+body {
+    background: #f4f7ff;
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    color: #003f8c;
+}
+
+.sub {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.panel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    width: 340px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 0 10px #b3c1e1;
+}
+
+input, select {
+    width: 90%;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    border: none;
+    background: #003f8c;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0055c9;
+}
+
+.output-box {
+    margin-top: 10px;
+    background: #eef3ff;
+    padding: 10px;
+    min-height: 70px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 4px;
+    border-radius: 5px;
+}
+
+.fault { background: #ff5252; color: white; }
+.hit { background: #4caf50; color: white; }
+.seg { background: #3f51b5; color: white; }
+.alloc { background: #00897b; color: white; }
