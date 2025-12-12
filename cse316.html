@@ -1,69 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Advanced Virtual Memory Management Tool</title>
-    <link rel="stylesheet" href="cse316.css">
+  <meta charset="utf-8" />
+  <title>Virtual Memory Visualizer Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Virtual Memory Visualizer Pro</h1>
+    <p class="subtitle">Paging • Segmentation • Allocation — Interactive OS learning tool</p>
+  </header>
 
-<h1>🧠 Virtual Memory Management Visualizer</h1>
-<p class="sub">Paging • Segmentation • Allocation • Page Replacement Algorithms</p>
+  <main class="main-grid">
+    <!-- Controls Column -->
+    <section class="card controls">
+      <h2>Paging Simulator</h2>
+      <label>Reference string (space separated):</label>
+      <input id="pageSeq" placeholder="e.g. 7 0 1 2 0 3 0 4 2 3 0 3" />
 
-<div class="panel">
+      <label>Frames:</label>
+      <input id="frames" type="number" min="1" value="3" />
 
-    <!-- Paging Panel -->
-    <div class="card">
-        <h2>Paging Simulator</h2>
+      <label>Algorithm:</label>
+      <select id="algo">
+        <option value="FIFO">FIFO</option>
+        <option value="LRU" selected>LRU</option>
+        <option value="OPT">Optimal</option>
+      </select>
 
-        <input id="pageSeq" placeholder="Pages (e.g. 1 2 3 2 4 1)">
-        <input id="frames" placeholder="Frames (e.g. 3)" type="number">
+      <div class="row">
+        <button onclick="runPaging()">Run</button>
+        <button onclick="stepPaging()">Step</button>
+        <button onclick="resetPaging()">Reset</button>
+      </div>
 
-        <select id="algo">
-            <option value="FIFO">FIFO</option>
-            <option value="LRU">LRU</option>
-            <option value="OPT">Optimal</option>
-        </select>
+      <hr/>
 
-        <button onclick="runPaging()">Run Paging</button>
+      <h2>Segmentation</h2>
+      <label>Segments sizes (KB) space separated</label>
+      <input id="segments" placeholder="e.g. 100 300 50" />
+      <div class="row">
+        <button onclick="runSegmentation()">Visualize Segments</button>
+        <button onclick="clearSeg()">Clear</button>
+      </div>
 
-        <h3>Output:</h3>
-        <div id="pagingOut" class="output-box"></div>
-    </div>
+      <hr/>
 
-    <!-- Segmentation Panel -->
-    <div class="card">
-        <h2>Segmentation</h2>
-
-        <input id="segments" placeholder="Enter segment sizes (100 200 50)">
-        <button onclick="runSegmentation()">Simulate</button>
-
-        <h3>Output:</h3>
-        <div id="segOut" class="output-box"></div>
-    </div>
-
-    <!-- Memory Allocation Panel -->
-    <div class="card">
-        <h2>Memory Allocation</h2>
-
-        <input id="holes" placeholder="Memory Holes (e.g. 100 500 200)">
-        <input id="process" placeholder="Process Size">
-
-        <select id="allocMethod">
-            <option value="First Fit">First Fit</option>
-            <option value="Best Fit">Best Fit</option>
-            <option value="Worst Fit">Worst Fit</option>
-        </select>
-
+      <h2>Memory Allocation</h2>
+      <label>Available holes (KB):</label>
+      <input id="holes" placeholder="e.g. 100 500 200" />
+      <label>Process size (KB):</label>
+      <input id="processSize" placeholder="e.g. 120" />
+      <label>Allocation method:</label>
+      <select id="allocMethod">
+        <option>First Fit</option>
+        <option>Best Fit</option>
+        <option>Worst Fit</option>
+      </select>
+      <div class="row">
         <button onclick="runAllocation()">Allocate</button>
+        <button onclick="clearAlloc()">Clear</button>
+      </div>
 
-        <h3>Output:</h3>
-        <div id="allocOut" class="output-box"></div>
-    </div>
+      <hr/>
+      <small>Tip: use the Step button to watch LRU internal updates (step mode only works reliably for preloaded sequence).</small>
+    </section>
 
-</div>
+    <!-- Visualization Column -->
+    <section class="card visual">
+      <h2>Memory Frames</h2>
+      <div id="frameArea" class="frame-area"></div>
 
-<script src="cse316.js"></script>
+      <div class="stats">
+        <div id="accessInfo">Access: -</div>
+        <div id="faultsInfo">Page Faults: 0</div>
+        <div id="hitsInfo">Hits: 0</div>
+      </div>
 
+      <h3>Timeline (most recent first)</h3>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <!-- Output Column -->
+    <section class="card outputs">
+      <h2>Segmentation Output</h2>
+      <div id="segOut" class="output-box"></div>
+
+      <h2>Allocation Output</h2>
+      <div id="allocOut" class="output-box"></div>
+
+      <h2>Run Summary / Notes</h2>
+      <div id="notes" class="output-box small"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Built for OS learning — HTML / CSS / JavaScript. Save, commit, and push to your GitHub repo for revision tracking.</small>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
